@@ -14,6 +14,7 @@ app.use(helmet.noSniff());
 app.use(helmet.ieNoOpen());
 app.use(helmet.hsts({maxAge: ninetyDaysInSeconds , force: true}));
 app.use(helmet.dnsPrefetchControl());
+app.use(helmet.noCache());
 app.disable('strict-transport-security');
 app.use('/_api', api);
 app.get("/", function (request, response) {
