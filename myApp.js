@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const app = express();
-const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
+const ninetyDaysInSeconds = 7776000;
 
 
 module.exports = app;
@@ -12,7 +12,7 @@ app.use(helmet.frameguard({action: 'deny'}));
 app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 app.use(helmet.ieNoOpen());
-app.use(helmet.hsts({magAge: timeInSeconds(ninetyDaysInSeconds) , force: true}));
+app.use(helmet.hsts({magAge: ninetyDaysInSeconds , force: true}));
 app.disable('strict-transport-security');
 app.use('/_api', api);
 app.get("/", function (request, response) {
